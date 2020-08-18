@@ -1,0 +1,278 @@
+
+nodejs
+1.nodejs是什么？
+node 搭建服务器 mongodb 数据库 vue.js 渐进式前端框架
+Node.js 就是运行在服务端的 JavaScript。
+Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。
+Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。
+ - 优点
+    (1)事件驱动
+    (2)异步编程  无阻塞的异步I/O   input   output
+ - 缺点
+    大量的匿名函数     $(".btn").click(function(){})
+ - 应用范围：         
+    (1)桌面应用
+    (2)服务器    解决高并发业务   IO密集型业务
+ 2 .nodejs怎么使用？
+在cmd命令行中使用   类似于在浏览器中使用console
+进入node.js环境  打开命令行工具
+win+R cmd node
+退出
+ctrl+c  或者.exit 或者ctrl+d
+process进程  返回当前进程对象
+遵循repl模式  read输入 eval求值 print输出 loop循环
+-返回上次输出的结果
+-cls+回车  清屏
+运行js稳健 
+在当前文件夹下打开命令行工具
+shift右击 node空格call.js
+编辑器终端cd
+_dirname当前文件所在目录的绝对路径     diredtory目录
+_filename当前文件所在的绝对路径           file文件
+_process.js当前文件的进程对象
+ 3.nodejs的模块化
+common.js模块规范  规定了模块的定义方式 模块的加载方式
+优点：方便调试  代码的复用  模块之间互不影响，避免变量污染，有效的防止命名冲突
+语法
+function func（）{}
+暴露module.exports={任意的数据类型}func
+加载模块  require（“./l模块路径”）*var* func*=*require*(*"./precss.js"*)*
+func();
+加载模块 请求 导入模块
+require
+模块的分类
+1.node.js的内置模块 fs  http超文本传输协议 内置对象 path  url
+2.node.js的第三方模块 jquery 
+3.自定义模块
+内置模块  fs操作文件http创建服务器 url对网址进行操作path路径
+createserver创建服务器
+parse强制转换为数字类型
+resolve
+join数组转换成字符串
+substring截取字符串
+split字符串转换为数组
+location对象
+应用范围
+  桌面应用
+  服务器 解决高并发业务  IO密集型业务（输入/输出）
+浏览器最高级对象window  全局对象
+node.js最高级对象是global
+js文件通过html文件在浏览器中运行    单独在浏览器不可以运行
+定义模块 module.exports
+require("./....js")
+api应用程序接口
+1.node.js的内置模块 fs  http超文本传输协议 内置对象 path  url
+2.搭建目录服务器
+flag {a append追加 r read 读取 w write写入x排他}
+{encoding："utf8",flsg:"wx"}
+
+文件系统模块fs（内置模块）
+<1>js 里面的fs模块
+同步用try  catch语句 异步用callback
+fs是filesystem的缩写，该模块提供本地文件的读写能力，基本上是POSIX（可移植操作系统接口）文件操作命令的简单包装。但是，这个模块几乎对所有操作提供异步和同步两种操作方式，供开发者选择。
+readFile(path路径,option配置项,callback回调函数)
+readFile方法的第一个参数是文件的路径，可以是绝对路径，也可以是相对路径。注意，如果是相对路径，是相对于当前进程所在的路径（process.cwd()），而不是相对于当前脚本所在的路径。
+                                                                      callback  err错误的原因 data读取到的数据内容
+
+readFileSync()
+readFile方法的第二个参数是读取完成后的回调函数。该函数的第一个参数是发生错误时的错误对象，第二个参数是代表文件内容的Buffer实例。
+readFileSync方法的第一个参数是文件路径，第二个参数可以是一个表示配置的对象，也可以是一个表示文本文件编码的字符串。默认的配置对象是{ encoding: null, flag: 'r' }，即文件编码默认为null，读取模式默认为r（只读）。如果第二个参数不指定编码（encoding），readFileSync方法返回一个Buffer（缓冲器）实例，否则返回的是一个字符串。
+readFile方法用于异步读取数据。
+unlink删除  path callback
+
+copyfile复制文件  
+rename重命名  旧名+新名+callback
+dir目录
+fs.mkdir创建目录path options callback
+1.node.js的内置模块 fs  http超文本传输协议 内置对象 path  url
+stas详情
+
+
+writeFile()，44
+writeFile方法的第一个参数是写入的文件名，第二个参数是写入的字符串，第三个参数是回调函数。
+回调函数前面，还可以再加一个参数，表示写入字符串的编码（默认是utf8）。
+writeFileSync()
+writeFileSync方法用于同步写入文件。
+exists(path,callback)
+         8月4
+a访问atime
+m修改mtime
+c更改文件状态ctime
+b创建bithtime
+stat.isDirectory判断访问的路径是否是目录
+stat.isFile判断访问的路径是否是文件
+const fs=require("fs");
+readstream读取流
+writestream写入流
+           8月5
+http模块
+帮助搭建一个服务器
+加载 const http=require("http")；
+console.log（http）；
+初始化/创建服务器  
+http.createServer((request请求,response响应)=>{
+response.writeHead(200,{"content-type":"text/plain;内容charset=utf-8"响应码});设置响应头
+response.write("helloworld");写入
+response.end();结束响应
+}).listen(3000,（）=>{
+添加端口号/监听
+});
+           8月6
+1.中间件（方法）
+send返回任意数据类型
+var app=express();
+app.fangfa
+8月8
+npm install -g express-generator
+cd myapp
+npm  install
+
+   8 10   sql  soukuo
+关系型数据库：【{“name“：“李四”，“sex”：“girl”；}，{“name“：“李四”，“sex”：“girl”},{“name“：“李四，“sex”：“girl””}】
+非关系型数据库：【{“name“：“李四”}，{“sex”：“girl”}】
+使用mongodb  配置全局环境变量
+net start mongodb(服务器名字) 以管理员身份启用
+进入mongodb：mongo+空格
+停止mongodb：net stop mongodb(服务器名字)
+退出:ctrl+c
+database数据库
+collextion表、集合
+doucument行
+filed列 键
+index索引
+primary key主键，id自动设置为主键
+data文件夹放数据 log放日志 bin放mangodb
+> show dbs显示所有数据库
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use local创建数据库
+switched to db local
+> db查看当前操作的数据库
+local
+> use web1操作数据库
+switched to db web1
+> db.createCollection("ui")创建集合
+{ "ok" : 1 }
+> db查看当前操作的数据库
+web1
+> show dbs查看所有数据库
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+web1    0.000GB
+> db.dropDatabase()删除数据库
+{ "dropped" : "web1", "ok" : 1 }
+> show dbs查看所有数据库
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+                                          在命令行中操作
+集合的操作
+操作集合
+创建集合 db.createCollection("ui")
+查看集合show tables查看集合所有数据 
+删除集合db.集合名.drop() true删除成功
+对文档的操作document
+增 db.集合名.insert({data}) insertOne() insertMany()
+db.students.insert([{"name":"妈"，“age”：“22”}，{"name":"爸"，“age”：“22”}])
+for(var i,i<7,i++){
+db.students.insert([{"name":"妈"，“age”：“22”}])
+}
+删除db.集合名.remove({}) delateOne({query}) delateMany({query})
+改  修改/更新文档 db.集合名.update({query},{})
+查  查找文档  db.集合名.find({query})
+                                   通过node.js操作mongodb
+cnpm install mongodb
+弹性盒子
+
+
+
+
+
+
+exists方法用来判断给定路径是否存在，然后不管结果如何，都会调用回调函数。
+不要在open方法之前调用exists方法，open方法本身就能检查文件是否存在。
+mkdir()，
+mkdir方法用于新建目录。mkdir接受三个参数，第一个是目录名，第二个是权限值，第三个是回调函数。
+writeFile()，
+writeFile方法用于写入文件。
+readFile()
+readFile方法用于读取文件内容。
+mkdirSync()，
+writeFileSync()，
+readFileSync()
+这三个方法是建立目录、写入文件、读取文件的同步版本
+对于流量较大的服务器，最好还是采用异步操作，因为同步操作时，只有前一个操作结束，才会开始后一个操作，如果某个操作特别耗时（常常发生在读写数据时），会导致整个程序停顿。
+readdir()，
+readdirSync()
+readdir方法用于读取目录，返回一个所包含的文件和子目录的数组。
+readdirSync方法是readdir方法的同步版本。下面是同步列出目录内容的代码
+stat()
+stat方法的参数是一个文件或目录，它产生一个对象，该对象包含了该文件或目录的具体信息。我们往往通过该方法，判断正在处理的到底是一个文件，还是一个目录。
+watchfile()
+watchfile方法监听一个文件，如果该文件发生变化，就会自动触发回调函数。
+unwatchfile()
+unwatchfile方法用于解除对文件的监听。
+createReadStream()
+createReadStream方法往往用于打开大型的文本文件，创建一个读取操作的数据流。所谓大型文本文件，指的是文本文件的体积很大，读取操作的缓存装不下，只能分成几次发送，每次发送会触发一个data事件，发送结束会触发end事件。
+createWriteStream()
+createWriteStream方法创建一个写入数据流对象，该对象的write方法用于写入数据，end方法用于结束写入操作。
+文件读取
+Node.js 文件系统（fs 模块）模块中的方法均有异步和同步版本，例如读取文件内容的函数有异步的 fs.readFile() 和同步的 fs.readFileSync()。
+异步的方法函数最后一个参数为回调函数，回调函数的第一个参数包含了错误信息(error)。
+建议大家使用异步方法，比起同步，异步方法性能更高，速度更快，而且没有阻塞。
+
+
+                                                                                                                                                                                                                                                        
+   浏览器中最高级对象(变量)是window   全局对象
+   nodejs中最高级对象(变量)是global   没有BOM DOM 只有ES语法
+   Object [global] {
+        global: [Circular], information.
+        clearInterval: [Function: clearInterval],
+        clearTimeout: [Function: clearTimeout],
+        setInterval: [Function: setInterval],
+        setTimeout: [Function: setTimeout] {
+            [Symbol(nodejs.util.promisify.custom)]: [Function]
+        },
+        queueMicrotask: [Function: queueMicrotask],
+        clearImmediate: [Function: clearImmediate],
+        setImmediate: [Function: setImmediate] {
+            [Symbol(nodejs.util.promisify.custom)]: [Function]
+        }
+    }
+    process:进程     返回当前进程对象
+    遵循REPL模式：read-eval-print-loop    输入-求值-输出-循环
+    _:返回上次输出结果
+
+    在cmd命令行工具中的操作：
+    - cls:清屏
+    - 上键：上一步输入的指令
+    - 下键：下一步输入的指令
+    - cd 文件目录   ./   ../     /
+
+
+ - 运行js文件
+   在当前文件夹下打开命令行工具：空白处右键+shift,选择 在此处打开命令窗口
+   - 在当前目录下运行js文件：node xxx.js    ndoe 文件名(.js可以省略)
+   - 非当前目录运行js文件：node ./当前文件  ../上级目录  /下级目录
+   - 路径名
+    __dirname：当前文件所在目录的绝对路径   directory  目录名称
+    __filename：当前文件所在的绝对路径    文件名称
+   - process  当前文件的进程对象    argv属性：[]
+   - [
+        'C:\\Program Files\\nodejs\\node.exe',    固定   当前运行程序的路径
+        'D:\\test\\框架\\node\\0731\\04process',当前运行文件的绝对路径
+        '33',动态  命令行指令的第一个参数
+        '33',动态  命令行指令的第二个参数
+
+
+
+
+
+
+
+
+
+
+
